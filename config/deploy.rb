@@ -22,6 +22,7 @@ set :shared_paths, ['storage', 'log', 'cache', 'db/production.db.sqlite3']
 set :user, 'deploy'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
 set :forward_agent, true     # SSH forward_agent.
+set :identity_file, ENV["HOME"] + "/.ssh/id_rsa4096_deploy_ali24_test01_2015"
 
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
