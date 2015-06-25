@@ -1,0 +1,32 @@
+<%- @title = "Загруженные файлы" -%>
+
+<% form_tag({ :controller => 'admin', :action => 'delete_files', :web => @web.address },
+             {'method' => 'post', 'accept-charset' => 'utf-8' }) do
+%>
+<div id="allFiles">
+  <h2>
+    Загруженные файлы <%= @web.name %>
+  </h2>
+
+<%- if @file_list.empty? -%>
+  <p>Нет загруженных файлов!</p>
+<%- else -%>
+  <p>Проверьте файлы, которые вы собираетесь удалить (<%= link_to "sort by #{@alt_sort_name}", :controller => 'wiki',
+      :web => @web.address, :action => 'file_list', :sort_order => @alt_sort_order %>).</p>
+  <ul style="list-style-type:none">
+  <%- for file in @file_list -%>
+    <li>
+      <input type="checkbox" name="<%= file.file_name %>" value="удалить"/>
+      <a href="<%= url_for :web => @web.address, :action => 'files',
+            :id => file.file_name %>"><%= file.file_name%></a> (<%= file.created_at.asctime %>) <span class="linked"><%= "связанный с: " unless
+            @web.pages_that_link_to_file(file.file_name).empty? -%>
+            <%= @web.pages_that_link_to_file(file.file_name).collect { |referring_page|  link_to_page(referring_page) }.join(", ").html_safe %></span>
+    </li>
+  <%- end -%>
+  </ul>
+  <label for="system_password">Введите пароль админа</label>
+  <%= password_field_tag "пароль админа", '', :class => "disableAutoComplete" %>
+    и <%= submit_tag("Удалить файлы") %>
+<%- end -%>
+</div>
+<%- end -%>

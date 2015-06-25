@@ -1,0 +1,31 @@
+<%-
+  @title = "#{@page.plain_name} (Вер ##{@revision_number}#{@show_diff ? ', изменения' : ''})".html_safe
+-%>
+
+
+<div id="revision">
+  <%- if @show_diff -%>
+    <p class="show_diff">
+        Показываем изменения от версии #<%= @revision_number - 1 %> к версии #<%= @revision_number %>:
+        <ins class="diffins">Добавлено</ins> | <del class="diffdel">Удалено</del> | <del class="diffmod">Было</del><ins class="diffmod">Стало</ins>
+    </p>
+    <%= @renderer.display_diff %>
+  <%- else -%>
+    <%= @renderer.display_content %>
+  <%- end -%>
+</div> <!-- Revision -->
+
+<div class="byline">
+  <%= "Версия от #{format_date(@revision.revised_at)}, вносил правки" %>
+  <%= link_to_page @revision.author.purify %>
+</div>
+
+<div class="navigation navfoot">
+  <%= raw navigation_menu_for_revision.join(' | ') %>
+    <span class="views">
+    | Вид:
+    <%= link_to 'Исходник', {:web => @web.address, :action => 'source', :id => @page.name, :rev => @revision_number},
+            {:id => 'view_source', :rel => 'nofollow' } %>
+  </span>
+  <%= render :partial => 'inbound_links' %>
+</div>

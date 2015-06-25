@@ -1,0 +1,15 @@
+<%- @title = "Ленты" -%>
+
+<p>Здесь можно подписаться на Atom ленту этой вики и получать ее в сокращенном или в полном виде</p>
+
+
+<ul id="feedsList">
+ <%- if @rss_with_content_allowed -%>
+  <li>
+      <%= link_to 'Полный вид (Atom 1.0)', :web => @web.address, :action => :atom_with_content %>
+  </li>
+ <%- end -%>
+  <li>
+    <%= link_to 'Одни заголовки (Atom 1.0)', :web => @web.address, :action => :atom_with_headlines %>
+  </li>
+</ul>

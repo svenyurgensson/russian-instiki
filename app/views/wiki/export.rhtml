@@ -1,0 +1,8 @@
+<%- @title = "Экспорт" -%>
+
+<p>Вы можете экспортировать все страницы этого сайта как zip-архив в виде HTML страничек либо в исходном форматировании (для импорта в другую wiki например)</p>
+
+<ul id="feedsList">
+  <li><%= link_to 'HTML', :web => @web.address, :action => 'export_html' %></li>
+  <li><%= link_to "Markup (#{@web.markup.to_s.capitalize})", :web => @web.address, :action => 'export_markup' %></li>
+</ul>

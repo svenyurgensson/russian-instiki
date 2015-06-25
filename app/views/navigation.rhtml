@@ -1,0 +1,29 @@
+<%
+def list_item(text, link_options, description, accesskey = nil)
+  link_options[:controller] = 'wiki'
+  link_options[:web] = @web.address
+  link_to_unless_current(text, link_options, :title => description, :accesskey => accesskey) {
+    content_tag('b', text, 'title' => description, 'class' => 'navOn')
+  }
+end
+%>
+
+<div class="navigation">
+    <span class="skipNav"><a href='#navEnd'>Skip the Navigation Links</a> | </span>
+<%- if params['action'] != 'published' then -%>
+    <%= list_item 'Главная', {:action => 'show', :id => 'HomePage'}, 'Домашняя страница', 'H' %> |
+    <%= list_item 'Все страницы', {:action => 'list'}, 'Все страницы, по-алфавиту', 'A' %> |
+    <%= list_item 'Последние обновления', {:action =>'recently_revised'}, 'Страницы, отсортированные по дате внесения изменений', 'U' %> |
+    <%= list_item 'Авторы', {:action => 'authors'}, 'Кто написал это' %> |
+    <%= list_item 'Ленты', {:action => 'feeds'}, 'Подписаться на ленту RSS, Atom' %> |
+    <%= list_item 'Экспорт', {:action => 'export'}, 'Загрузить содержимое всех страниц в виде zip архива', 'X' %> |
+    <% form_tag({ :controller => 'wiki', :action => 'search', :web => @web.address},
+                 {'id' => 'navigationSearchForm', 'method' => 'get', 'accept-charset' => 'utf-8' }) do %>
+      <fieldset class="search"><input type="text" id="searchField" name="query" placeholder="Поиск" /></fieldset>
+    <% end %>
+<%- else -%>
+    <%= list_item 'Главная', {:action => 'published', :id => 'HomePage'}, 'Домашняя страница', 'H' %> |
+    <%= list_item 'Ленты', {:action => 'feeds'}, 'Подписаться на ленту RSS, Atom' %>
+<% end-%>
+  <span id='navEnd'></span>
+</div>
