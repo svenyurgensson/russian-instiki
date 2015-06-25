@@ -10,7 +10,7 @@ require 'mina/git'
 
 set :domain, 'wiki.alibaba24.ru'
 set :deploy_to, '/home/deploy/projects/wiki'
-set :repository, 'git://git@bitbucket.org:alibaba24/wiki.git'
+set :repository, 'ssh://bitbucket.org:alibaba24/wiki.git'
 set :branch, 'master'
 
 
