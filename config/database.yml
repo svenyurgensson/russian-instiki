@@ -11,4 +11,4 @@ test:
 
 production:
   adapter: sqlite3
-  database: shared/db/production.db.sqlite3
+  database: dbstorage/production.db.sqlite3

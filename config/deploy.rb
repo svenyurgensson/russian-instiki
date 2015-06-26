@@ -10,13 +10,13 @@ require 'mina/git'
 
 set :domain, 'wiki.alibaba24.ru'
 set :deploy_to, '/home/deploy/projects/wiki'
-set :repository, 'ssh://bitbucket.org:alibaba24/wiki.git'
+set :repository, 'git@bitbucket.org:alibaba24/wiki.git'
 set :branch, 'master'
 
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['storage', 'log', 'cache', 'db/production.db.sqlite3']
+set :shared_paths, ['storage', 'log', 'cache', 'db']
 
 # Optional settings:
 set :user, 'deploy'    # Username in the server to SSH to.
@@ -39,10 +39,14 @@ end
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
 task :setup => :environment do
-  ["storage", "cache", "log", "config", "db"].each do |d|
+  ["storage", "cache", "log", "config", "dbstorage"].each do |d|
     queue! %[mkdir -p "#{deploy_to}/#{shared_path}/#{d}"]
     queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/#{d}"]
   end
+  invoke :'deploy:link_shared_paths'
+  queue! %[cd #{deploy_to}/current]
+  invoke :'bundle:install'
+  queue! %[RAILS_ENV=production rake db:setup]
 end
 
 desc "Deploys the current version to the server."
@@ -56,13 +60,11 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
-      queue "sudo restart wiki"
+      #queue! "sudo restart wiki"
     end
   end
 end

@@ -1,4 +1,4 @@
-#####
+#
 # Bootstrap the Rails environment, frameworks, and default configuration
 ####
 
