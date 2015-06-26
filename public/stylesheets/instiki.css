@@ -584,6 +584,7 @@ textarea#content {
     padding: 0.7em;
     font-size: 1.1em;
     line-height: 1.606; /* size * 1.46  */
+    font-family: monospace;
 }
 
 #imgur input {
