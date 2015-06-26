@@ -7,9 +7,25 @@ One paragraph summary
 
 
 ## Installations
-## Downloads
-## FAQs
 
+### Local
+
+#### Deploy setup
+
+Выполняется однократно для настройки проекта.
+Выполняем локально в директории проекта:
+
+    bundle install
+    mina setup -v
+    mina deploy -v
+    mina "rake[db:setup]" -v
+
+### Deploy to server
+
+После внесения изменений в проект локально, тестирования и отправки изменений в репозиторий,
+выполняем локально в директории проекта:
+
+    mina deploy -v
 
 
 ## Getting started
@@ -17,9 +33,10 @@ One paragraph summary
 Explain the steps to install and link to further info
 Show usage examples
 
-## Examples
 
-Examples
+## FAQs
+
+
 
 ## Contributors
 

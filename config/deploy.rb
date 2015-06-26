@@ -16,7 +16,7 @@ set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['storage', 'log', 'cache', 'db']
+set :shared_paths, ['storage', 'log', 'cache', 'dbstorage']
 
 # Optional settings:
 set :user, 'deploy'    # Username in the server to SSH to.
@@ -43,10 +43,14 @@ task :setup => :environment do
     queue! %[mkdir -p "#{deploy_to}/#{shared_path}/#{d}"]
     queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/#{d}"]
   end
-  invoke :'deploy:link_shared_paths'
-  queue! %[cd #{deploy_to}/current]
-  invoke :'bundle:install'
-  queue! %[RAILS_ENV=production rake db:setup]
+
+  # queue! %[cd #{deploy_to}/current]
+  # invoke :'git:clone'
+
+  # invoke :'deploy:link_shared_paths'
+  # queue! %[cd #{deploy_to}/current]
+  # invoke :'bundle:install'
+  # queue! %[RAILS_ENV=production rake db:setup]
 end
 
 desc "Deploys the current version to the server."
@@ -64,7 +68,7 @@ task :deploy => :environment do
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
-      #queue! "sudo restart wiki"
+      queue! "sudo restart wiki"
     end
   end
 end
