@@ -8,6 +8,6 @@
 
 <div class="byline">
   <%= @page.revisions? ? "Отредактировано" : "Создано" %> : <%= format_date(@page.revised_at) %>
-  by
+  пользователем
   <%= author_link(@page, { :mode => (@link_mode || :show) }) %>
 </div>

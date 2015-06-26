@@ -9,7 +9,7 @@ end
 %>
 
 <div class="navigation">
-    <span class="skipNav"><a href='#navEnd'>Skip the Navigation Links</a> | </span>
+    <span class="skipNav"><a href='#navEnd'>Пропустить навигацию</a> | </span>
 <%- if params['action'] != 'published' then -%>
     <%= list_item 'Главная', {:action => 'show', :id => 'HomePage'}, 'Домашняя страница', 'H' %> |
     <%= list_item 'Все страницы', {:action => 'list'}, 'Все страницы, по-алфавиту', 'A' %> |

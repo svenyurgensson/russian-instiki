@@ -1,3 +1,4 @@
+# coding: utf-8
 # Controller responsible for serving files and pictures.
 
 require 'zip/zip'
@@ -6,7 +7,7 @@ require 'instiki_stringsupport'
 class FileController < ApplicationController
 
   layout 'default'
-  
+
   before_filter :check_authorized
   before_filter :check_allow_uploads, :dnsbl_check, :except => [:file, :blahtex_png]
 
@@ -17,7 +18,7 @@ class FileController < ApplicationController
       # form supplied
       new_file = @web.wiki_files.create(params['file'])
       if new_file.valid?
-        flash[:info] = "File '#{@file_name}' successfully uploaded"
+        flash[:info] = "Файл '#{@file_name}' загружен"
         WikiReference.pages_that_link_to_file(@web, @file_name).each do |page|
           RevisionSweeper.expire_page(@web, page)
         end
@@ -39,16 +40,16 @@ class FileController < ApplicationController
       end
     end
   end
-  
+
   def blahtex_png
     send_file(@web.blahtex_pngs_path.join(params['id']))
   end
-    
+
   def delete
     @file_name = params['id']
     file = WikiFile.find_by_file_name(@file_name)
     unless file
-      flash[:error] = "File '#{@file_name}' not found."
+      flash[:error] = "Файл '#{@file_name}' не найден."
       redirect_to_page(@page_name)
     end
     system_password = params['system_password']
@@ -57,9 +58,9 @@ class FileController < ApplicationController
       # form supplied
       if wiki.authenticate(system_password)
          file.destroy
-         flash[:info] = "File '#{@file_name}' deleted."
+         flash[:info] = "Файл '#{@file_name}' удален."
        else
-        flash[:error] = "System Password incorrect."        
+        flash[:error] = "Неправильно указан пароль администратора."
       end
       redirect_to_page(@page_name)
     else
@@ -70,16 +71,16 @@ class FileController < ApplicationController
   def cancel_upload
     return_to_last_remembered
   end
-  
+
   def import
     if params['file']
       @problems = []
       import_file_name = "#{@web.address}-import-#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}.zip"
       import_from_archive(params['file'].path)
       if @problems.empty?
-        flash[:info] = 'Import successfully finished'
+        flash[:info] = 'Импорт прошел успешно'
       else
-        flash[:error] = 'Import finished, but some pages were not imported:<li>' + 
+        flash[:error] = 'Импорт завершен. но некоторые страницы мы не смогли импортировать:<li>' +
             @problems.join('</li><li>') + '</li>'
       end
       return_to_last_remembered
@@ -89,12 +90,12 @@ class FileController < ApplicationController
   end
 
   protected
-  
+
   def check_authorized
     unless authorized? or @web.published?
       @hide_navigation  = true
-      render(:status => 403, :text => 'This web is private', :layout => true)
-    end    
+      render(:status => 403, :text => 'Это приватная страница', :layout => true)
+    end
   end
 
   def check_allow_uploads
@@ -110,9 +111,9 @@ class FileController < ApplicationController
       render(:status => 404, :text => "Web #{params['web'].inspect} not found", :layout => 'error')
     end
   end
-  
-  private 
-  
+
+  private
+
   def import_from_archive(archive)
     logger.info "Importing pages from #{archive}"
     zip = Zip::ZipInputStream.open(archive)

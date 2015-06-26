@@ -19,7 +19,7 @@
 <hr/>
 <div class="byline">
   <%= @page.revisions? ? "Отредактировано" : "Создано" %> : <%= format_date(@page.revised_at) %>
-  by <%= author_link(@page) %>
+  пользователем <%= author_link(@page) %>
   <%= "(#{@page.author.ip})" if @page.author.respond_to?(:ip) %>
   <% if @web.count_pages? %>
     <% total_chars = @page.content.length %>

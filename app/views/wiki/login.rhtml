@@ -1,17 +1,17 @@
-<%- @title = "#{@web_name} Login" %><% @hide_navigation = true -%>
+<%- @title = "#{@web_name} Вход" %><% @hide_navigation = true -%>
 
 <% form_tag({ :controller => 'wiki', :action => 'authenticate', :web => @web.address},
     { 'id' => 'loginForm', 'method' => 'post', 'accept-charset' => 'utf-8' }) do %>
     <p>
-    This web is password-protected. Please enter the password.
+    Страница защищена паролем! Введите пароль:
     <% if @web.published? %>
-      If you don't have the password, you can view this wiki as a <%= link_to 'read-only version', :action => 'published', :id => 'HomePage' %>.
+      Если вы не знаете пароль, то сможете только прочитать страницу <%= link_to 'версия только для чтения', :action => 'published', :id => 'HomePage' %>.
     <% end %>
     </p>
     <p>
-    <label for="password"><b>Password:</b></label>
+    <label for="password"><b>Пароль:</b></label>
     <input type="password" name="password" id="password" />
-    <input type="submit" value="Login" />
+    <input type="submit" placeholder="Логин" />
     </p>
 <%- end -%>
 

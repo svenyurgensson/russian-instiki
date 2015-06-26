@@ -580,7 +580,6 @@ body {
 textarea#content {
     min-width: 620px;
     overflow-x: scroll;
-
     min-height: 800px;
     padding: 0.7em;
     font-size: 1.1em;

@@ -1,3 +1,4 @@
+# coding: utf-8
 # The filters added to this controller will be run for all controllers in the application.
 # Likewise will all the methods added be available for all controllers.
 
@@ -62,7 +63,7 @@ class ApplicationController < ActionController::Base
     @action_name = params['action'] || 'index'
     @web_name = params['web']
     @wiki = wiki
-    @author = cookies['author'] || 'AnonymousCoward'
+    @author = cookies['author'] || 'Аноним'
     if @web_name
       @web = @wiki.webs[@web_name]
       render(:status => 404, :text => "Unknown web '#{@web_name}'",
@@ -145,9 +146,9 @@ class ApplicationController < ActionController::Base
 
   def password_error(password)
     if password.nil? or password.empty?
-      'Please enter the password.'
+      'Введите пароль.'
     else
-      'You entered a wrong password. Please enter the right one.'
+      'Вы ввели неправильный пароль, введите еще раз.'
     end
   end
 
@@ -176,8 +177,8 @@ class ApplicationController < ActionController::Base
   def rescue_action_in_public(exception)
       render :status => 500, :text => <<-EOL
         <html xmlns="http://www.w3.org/1999/xhtml"><body>
-          <h2>Internal Error</h2>
-          <p>An application error occurred while processing your request.</p>
+          <h2>Ой! Ошибочка...</h2>
+          <p>Возникла ошибка при обработке вашего запроса.</p>
           <!-- \n#{exception.to_s.purify.gsub!(/-{2,}/, '- -') }\n#{exception.backtrace.join("\n")}\n -->
         </body></html>
       EOL
@@ -191,7 +192,7 @@ class ApplicationController < ActionController::Base
     # then try to redirect to it
     if redirect_target.nil?
       if tried_home
-        raise 'Application could not render the index page'
+        raise 'Вики не может правильно отобразить страницу'
       else
         logger.debug("Session ##{session.object_id}: no remembered redirect location, trying home")
         redirect_home

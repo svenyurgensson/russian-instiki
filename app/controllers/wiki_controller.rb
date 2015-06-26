@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'fileutils'
 require 'maruku'
 require 'maruku/ext/math'
@@ -270,7 +271,7 @@ EOL
 
   def published
     if not @web.published?
-      render(:text => "Published version of web '#{@web_name}' is not available", :status => 404, :layout => 'error')
+      render(:text => "Опубликованной версии страницы: '#{@web_name}' не существует!", :status => 404, :layout => 'error')
       return
     end
 
@@ -284,17 +285,17 @@ EOL
       real_page = real_pages.last
       if real_page
         if real_pages.length == 1
-          flash[:info] = "Redirected from \"#{@page_name}\"."
+          flash[:info] = "Переход со страницы: \"#{@page_name}\"."
         else
           list_pages = real_pages.collect do |r|
             "<a href=\"#{url_for(:web => @web.address, :action => 'published', :id => r, :only_path => true)}\">#{r.escapeHTML}</a>"
           end
           c = list_pages.length > 2 ? 'all' : 'both'
-          flash[:error] = "Redirected from \"#{@page_name}\".\nNote: #{list_pages.to_sentence} #{c} redirect for \"#{@page_name}\".".html_safe
+          flash[:error] = "Переход со страницы: \"#{@page_name}\".\nКстати: #{list_pages.to_sentence} #{c} переходов с \"#{@page_name}\".".html_safe
         end
           redirect_to :web => @web_name, :action => 'published', :id => real_page, :status => 301
       else
-        render(:text => "Page '#{@page_name}' not found", :status => 404, :layout => 'error')
+        render(:text => "Страница '#{@page_name}' не найдена", :status => 404, :layout => 'error')
       end
      end
   end
@@ -333,7 +334,7 @@ EOL
         new_name = params['new_name'] ? params['new_name'].purify : @page_name
         new_name = @page_name if new_name.empty?
         prev_content = @page.current_revision.content
-        raise Instiki::ValidationError.new('A page named "' + new_name.escapeHTML + '" already exists.') if
+        raise Instiki::ValidationError.new('Страница с именем: "' + new_name.escapeHTML + '" уже существует.') if
             @page_name != new_name && @web.has_page?(new_name)
         wiki.revise_page(@web_name, @page_name, new_name, the_content, Time.now,
             Author.new(author_name, remote_ip), PageRenderer.new)
@@ -383,13 +384,13 @@ EOL
         real_page = real_pages.last
         if real_page
           if real_pages.length == 1
-            flash[:info] = "Redirected from \"#{@page_name}\"."
+            flash[:info] = "Переход со страницы \"#{@page_name}\"."
           else
             list_pages = real_pages.collect do |r|
               "<a href=\"#{url_for(:web => @web.address, :action => 'show', :id => r, :only_path => true)}\">#{r.escapeHTML}</a>"
             end
             c = list_pages.length > 2 ? 'all' : 'both'
-            flash[:error] = "Redirected from \"#{@page_name}\".\nNote: #{list_pages.to_sentence} #{c} redirect for \"#{@page_name}\".".html_safe
+            flash[:error] = "Переход со страницы \"#{@page_name}\".\Кстати: #{list_pages.to_sentence} #{c} переходов со страницы \"#{@page_name}\".".html_safe
           end
           redirect_to :web => @web_name, :action => 'show', :id => real_page, :status => 301
         else
@@ -398,7 +399,7 @@ EOL
           redirect_to :web => @web_name, :action => 'new', :id => @page_name
         end
       else
-        render :text => 'Page name is not specified', :status => 404, :layout => 'error'
+        render :text => 'Не указано имя страницы', :status => 404, :layout => 'error'
       end
     end
   end
@@ -419,7 +420,7 @@ EOL
       if not @page_name.nil? and not @page_name.empty?
         redirect_to :web => @web_name, :action => 'new', :id => @page_name
       else
-        render :text => 'Page name is not specified', :status => 404, :layout => 'error'
+        render :text => 'Не указано имя страницы', :status => 404, :layout => 'error'
       end
     end
   end
@@ -436,7 +437,7 @@ EOL
     if [:markdownMML, :markdownPNG, :markdown].include?(@web.markup)
       @tex_content = Maruku.new(@page.content).to_latex
     else
-      @tex_content = 'TeX export only supported with the Markdown text filters.'
+      @tex_content = 'Экспорт страницы в TeX может быть только при Maruku формате'
     end
     render(:layout => 'tex')
   end
@@ -447,7 +448,7 @@ EOL
       @s5_content = my_rendered.display_s5
       @s5_theme = my_rendered.s5_theme
     else
-      @s5_content = "S5 not supported with this text filter"
+      @s5_content = "S5 не поддерживается этим фильтром"
       @s5_theme = "default"
     end
   end
@@ -485,7 +486,7 @@ EOL
     if @web.markup == :markdownMML || @web.markup == :markdownPNG
       @tex_content = Maruku.new(@page.content).to_latex
     else
-      @tex_content = 'TeX export only supported with the Markdown text filters.'
+      @tex_content = 'Экспорт страницы в TeX может быть только при Maruku формате'
     end
     File.open(file_path, 'w') { |f| f.write(render_to_string(:template => 'wiki/tex', :layout => 'tex')) }
   end
@@ -571,7 +572,7 @@ EOL
       if  @web.markup == :markdownMML || @web.markup == :markdownPNG
         tex_web[page.name] = Maruku.new(page.content).to_latex
       else
-        tex_web[page.name] = 'TeX export only supported with the Markdown text filters.'
+        tex_web[page.name] = 'Экспорт страницы в TeX может быть только при Maruku формате'
       end
       tex_web
     end
@@ -584,7 +585,7 @@ EOL
   def filter_spam(content)
     @@spam_patterns ||= load_spam_patterns
     @@spam_patterns.each do |pattern|
-      raise Instiki::ValidationError.new("Your edit was blocked by spam filtering") if content =~ pattern
+      raise Instiki::ValidationError.new("Ваш текст попал в спам фильтр!") if content =~ pattern
     end
   end
 

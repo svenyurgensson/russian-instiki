@@ -1,21 +1,21 @@
-<%- @title = "#{@page.plain_name} is locked".html_safe -%>
+<%- @title = "Страница #{@page.plain_name} заблокирована от изменений!".html_safe -%>
 
 <p>
   <%= link_to_page(h(@page.locked_by.purify)) %>
   <%- if @page.lock_duration(Time.now) == 0 -%>
-    just started editing this page.
+    только что была отредактирована
   <%- else -%>
-    has been editing this page for <%= @page.lock_duration(Time.now) %> minutes.
+    была отредактирована <%= @page.lock_duration(Time.now) %> минут тому назад.
   <%- end -%>
 </p>
 
 <p>
-  <%= link_to 'Edit the page anyway',
+  <%= link_to 'Я все равно хочу отредактировать эту страницу!',
         {:web => @web_name, :action => 'edit', :id => @page.name, :params => {'break_lock' => '1'} },
         {:accesskey => 'E'}
   %>
 
-  <%= link_to 'Cancel',
+  <%= link_to 'Отмена',
         {:web => @web_name, :action => 'show', :id => @page.name},
         {:accesskey => 'C'}
   %>
