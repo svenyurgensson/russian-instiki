@@ -531,13 +531,38 @@ a {
 }
 
 #revision {
-    font-size: 1.3em;
-    line-height: 1.3;
+    font-size: 1.2em;
+    line-height: 1.752; # font-size * 1.46
     margin: 2em auto;
+    font-family: "Segoe UI", "Liberation Sans", "Nimbus Sans L", Helvetica, Arial, serif;
 }
+
+#revision p {
+    max-width: 76ch;
+    widows: 3;
+    hyphenate: auto;
+    hyphenate-lines: 3;
+    word-spacing: 0.25em;
+
+}
+
+#revision blockquote p {
+    /*Currently not supported*/
+    hanging-punctuation: first;
+
+    /*fallback*/
+    text-indent: -0.5em;
+}
+
 
 #revision img {
     max-width: 760px;
+    height: auto;
+    display: block;
+}
+
+#revision pre {
+    font-family: Consolas, "Liberation Mono", "Nimbus Mono L", "Andale Mono", "Courier New", monospace;
 }
 
 html {
@@ -549,6 +574,7 @@ body {
     background: linear-gradient(to bottom, rgba(176, 201, 124, 0.67) 0%,#ACC7A0 5%,#f9f9f9 13%);
     height: 100%;
     min-height: 100%;
+    font-kerning: normal;
 }
 
 textarea#content {
@@ -556,7 +582,7 @@ textarea#content {
     min-height: 800px;
     padding: 0.7em;
     font-size: 1.1em;
-    line-height: 1.4;
+    line-height: 1.606; /* size * 1.46  */
 }
 
 #imgur input {
@@ -582,4 +608,61 @@ textarea#content {
     visibility: visible;
     width: 210px;
     margin: 5px 0;
+}
+
+
+#revision table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #eaeaea;
+    width: 100%;
+    max-width: 900px;
+    table-layout: fixed;
+}
+
+#revision table caption {
+    color: #000;
+    font: italic 85%/1 arial, sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+#revision table td, #revision table th {
+    border-left: 1px solid #eaeaea;/*  inner column border */
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible; /*to make ths where the title is really long work*/
+    padding: 0.5em 1em; /* cell padding */
+}
+
+#revision table td:first-child,
+#revision table th:first-child {
+    border-left-width: 0;
+}
+
+#revision table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+#revision table td {
+    background-color: transparent;
+}
+
+#revision table td img {
+    height: auto;
+    max-width: 100%;
+    width: auto;
+}
+
+#revision table tr:nth-child(2n-1) td {
+    background-color: #f2f2f2;
+}
+
+#revision table tbody > tr:last-child > td {
+    border-bottom-width: 0;
 }
