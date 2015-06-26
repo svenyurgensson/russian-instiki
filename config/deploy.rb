@@ -16,7 +16,7 @@ set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['storage', 'log', 'cache', 'dbstorage']
+set :shared_paths, ['storage', 'log', 'cache', 'tmp', 'dbstorage']
 
 # Optional settings:
 set :user, 'deploy'    # Username in the server to SSH to.
@@ -67,7 +67,6 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
-      queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue! "sudo restart wiki"
     end
   end
