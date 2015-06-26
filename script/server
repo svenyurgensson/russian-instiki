@@ -63,7 +63,7 @@ puts "=> Booting #{ActiveSupport::Inflector.demodulize(server)}"
 puts "=> Rails #{Rails.version} application starting on http://#{options[:Host]}:#{options[:Port]}#{options[:path]}"
 
 %w(cache pids sessions sockets).each do |dir_to_make|
-  FileUtils.mkdir_p(File.join(RAILS_ROOT, 'tmp', dir_to_make))
+  FileUtils.mkdir_p(File.join(RAILS_ROOT, 'tmp', dir_to_make), force: true)
 end
 
 if options[:detach]
@@ -104,7 +104,7 @@ app = Rack::Builder.new {
   use Rails::Rack::LogTailer unless options[:detach]
   use Rails::Rack::Debugger if options[:debugger]
   map map_path do
-    use Rails::Rack::Static 
+    use Rails::Rack::Static
     run inner_app
   end
 }.to_app
