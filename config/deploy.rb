@@ -16,7 +16,7 @@ set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['storage', 'log', 'cache', 'tmp', 'dbstorage']
+set :shared_paths, ['storage', 'log', 'cache', 'tmp', 'dbstorage', 'webs']
 
 # Optional settings:
 set :user, 'deploy'    # Username in the server to SSH to.
@@ -39,7 +39,7 @@ end
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
 task :setup => :environment do
-  ["storage", "cache", "log", "config", "dbstorage"].each do |d|
+  ["storage", "cache", "log", "config", "dbstorage", "webs"].each do |d|
     queue! %[mkdir -p "#{deploy_to}/#{shared_path}/#{d}"]
     queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/#{d}"]
   end
