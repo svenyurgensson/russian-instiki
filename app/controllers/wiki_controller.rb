@@ -235,6 +235,7 @@ EOL
       redirect_to :web => @web_name, :action => 'locked', :id => @page_name
     else
       @page.lock(Time.now, @author)
+      @possible_links = Page.all(select: "name").collect(&:name).sort.take(500)
     end
   end
 
@@ -550,7 +551,7 @@ EOL
     @categories = WikiReference.list_categories(@web).sort
     @category = params['category']
     if @category
-      @set_name = "category '#{@category}'"
+      @set_name = "их раздела '#{@category}'"
       pages = WikiReference.pages_in_category(@web, @category).sort.map { |page_name| @web.page(page_name) }
       @pages_in_category = PageSet.new(@web, pages)
     else

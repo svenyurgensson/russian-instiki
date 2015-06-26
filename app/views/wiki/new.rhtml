@@ -4,6 +4,8 @@
   @hide_navigation = true
 -%>
 
+<%= render :partial => "web_list" %>
+
 <div id="MarkupHelp">
   <%= render :partial => "upload_img" %>
   <%= render(:file => "#{@web.markup}_help") -%>
@@ -17,7 +19,7 @@
         <textarea name="content" id="content" rows="24" cols="60"><%= h(flash[:content] ||
                      params['content'] ?  params['content'].purify : '' ) %></textarea>
         <div id="editFormButtons">
-            <input type="submit" value="Создать" accesskey="s"/> под именем
+            <input type="submit" id="submit" value="Создать" accesskey="s"/> под именем
             <%= text_field_tag :author, @author,
                 :onfocus => "this.value == 'Аноним' ? this.value = '' : true;",
                 :onblur  => "this.value == '' ? this.value = 'Аноним' : true" %>

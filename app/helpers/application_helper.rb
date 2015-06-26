@@ -86,8 +86,8 @@ require 'instiki_stringsupport'
       ''
     else
       ("<div id=\"categories\">\n" +
-      '<strong>Categories</strong>:' +
-      '[' + link_to_unless_current('Любая', :web => @web.address, :action => self.action_name, :category => nil) + "]\n" +
+      '<strong>Разделы</strong>:' +
+      '[' + link_to_unless_current('Все', :web => @web.address, :action => self.action_name, :category => nil) + "]\n" +
       @categories.map { |c|
         link_to_unless_current(c.html_safe, :web => @web.address, :action => self.action_name, :category => c)
       }.join(', ') + "\n" +

@@ -43,7 +43,7 @@
 
 <%- if @web.count_pages? -%>
   <% total_chars = @pages_in_category.characters %>
-  <p class="pageStats">All content: <%= total_chars %> chars / approx. <%= sprintf("%-.1f", (total_chars / 2275 )) %> printed pages</p>
+  <p class="pageStats">Всего букв: <%= total_chars %> <%= sprintf("%-.1f", (total_chars / 2275 )) %> printed pages</p>
 <%- end -%>
 </div>
 

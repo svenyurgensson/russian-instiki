@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'chunks/chunk'
 require 'instiki_stringsupport'
 
@@ -26,7 +27,7 @@ def initialize(match_data, content)
       @unmask_text = ''
     else
       category_urls = @list.map { |category| url(category) }.join(', ')
-      @unmask_text = '<div class="property"> category: ' + category_urls + '</div>'
+      @unmask_text = '<div class="property"> раздел(ы): ' + category_urls + '</div>'
     end
   end
 

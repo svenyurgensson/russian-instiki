@@ -13,7 +13,7 @@
 
 
 <%- unless @results.empty? -%>
-  <h2> <%= @results.length %> страниц, которые в тексте содержат это слово:</h2>
+  <h2>Нашли страниц: <%= @results.length %> содержащие это слово в тексте:</h2>
   <ul>
     <%- for page in @results -%>
       <li>

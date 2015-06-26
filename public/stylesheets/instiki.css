@@ -582,9 +582,9 @@ textarea#content {
     overflow-x: scroll;
     min-height: 800px;
     padding: 0.7em;
-    font-size: 1.1em;
-    line-height: 1.606; /* size * 1.46  */
-    font-family: monospace;
+    font-size: 1.2em;
+    line-height: 1.67; /* size * 1.46  */
+    font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
 }
 
 #imgur input {
@@ -667,4 +667,30 @@ textarea#content {
 
 #revision table tbody > tr:last-child > td {
     border-bottom-width: 0;
+}
+
+
+#link_block {
+    position: fixed;
+    left:10px;
+    top: 60px;
+    width: 360px;
+}
+
+#link_block ul {
+    columns: 150px 2;
+    -webkit-columns: 150px 2;
+    -moz-columns: 150px 2;
+    line-height: 0.8;
+  -webkit-column-gap: 10px;
+     -moz-column-gap: 10px;
+          column-gap: 10px;
+}
+
+#link_block li {
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
 }

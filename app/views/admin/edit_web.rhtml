@@ -143,14 +143,14 @@
           'accept-charset' => 'utf-8' }) do
 %>
   <p  style="text-align:right;font-size:.85em;">
-      Clean up selected category:
+      Очистка выбранного раздела:
       <select id="category" name="category">
         <%= html_options(categories) %>
       </select>
-      Enter system password
+      Введите пароль администратора
       <input type="password" id="system_password_orphaned_in_category" class="disableAutoComplete" name="system_password_orphaned_in_category" />
       and
-      <input type="submit" value="Delete Orphan Pages in Category" />
+      <input type="submit" value="Удалить одинокие страницы в разделе" />
   </p>
 <%- end -%>
 <%- end -%>

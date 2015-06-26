@@ -4,6 +4,8 @@
   @hide_navigation = true
 -%>
 
+<%= render :partial => "web_list" %>
+
 <div id="MarkupHelp">
 
   <%= render :partial => "upload_img" %>
@@ -29,7 +31,7 @@
        <%= hidden_field_tag 'new_name', @page_name %>
 <% end%>
         <div id="editFormButtons">
-            <input type="submit" value="Сохранить" accesskey="s"/> под именем
+            <input type="submit" id="submit" value="Сохранить" accesskey="s"/> под именем
             <%= text_field_tag :author, h(@author.purify),
                     :onfocus => "this.value == 'Аноним' ? this.value = '' : true;",
                     :onblur  => "this.value == '' ? this.value = 'Аноним' : true" %>
@@ -78,8 +80,9 @@ setupSVGedit('<%= compute_public_path("editor/svg-editor.html", "svg-edit").spli
 addS5button('<%= @page.name.escapeHTML %>');
 <%- end -%>
 <%- end -%>
+
+
+
 //--><!]]>
-
-
 
 </script>

@@ -29,7 +29,9 @@
             var json = JSON.parse(xhr.responseText);
             console.log(json);
             document.querySelector("#preview").src = json.data.link;
-            document.querySelector("#result-link").value  = "![описание картинки](" + json.data.link + ")";
+            var wiki_img = "![описание картинки](" + json.data.link + ")";
+            document.querySelector("#result-link").value  = wiki_img;
+            insertAtCaret('content', wiki_img);
             document.body.className = "uploaded";
         }
 
