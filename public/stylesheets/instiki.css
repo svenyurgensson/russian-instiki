@@ -694,3 +694,11 @@ textarea#content {
     text-overflow: ellipsis;
     font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
 }
+
+
+#editFormButtons {
+    display: block;
+    position: fixed;
+    top: 2px;
+    left: 10px;
+}

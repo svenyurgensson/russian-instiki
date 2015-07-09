@@ -10,6 +10,7 @@ class WikiController < ApplicationController
 
   before_filter :load_page
   before_filter :dnsbl_check, :only => [:edit, :new, :save, :export_html, :export_markup]
+  before_filter :possible_links, :only => [:edit, :new]
   caches_action :show, :published, :authors, :tex, :s5, :print, :recently_revised, :list, :file_list, :source,
         :history, :revision, :atom_with_content, :atom_with_headlines, :if => Proc.new { |c| c.send(:do_caching?) }
   cache_sweeper :revision_sweeper
@@ -235,7 +236,6 @@ EOL
       redirect_to :web => @web_name, :action => 'locked', :id => @page_name
     else
       @page.lock(Time.now, @author)
-      @possible_links = Page.all(select: "name").collect(&:name).sort.take(500)
     end
   end
 
@@ -470,6 +470,12 @@ EOL
   end
 
   private
+
+  def possible_links
+    @possible_links = Page.all(select: "name").collect(&:name).sort.take(500)
+  end
+
+
 
 #  def convert_tex_to_pdf(tex_path)
 #    # TODO remove earlier PDF files with the same prefix

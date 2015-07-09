@@ -10,6 +10,11 @@ One paragraph summary
 
 ### Local
 
+Для запуска в режиме разработчика
+
+    instiki -e development
+
+
 #### Deploy setup
 
 Выполняется однократно для настройки проекта.
