@@ -627,7 +627,7 @@ textarea#content {
     empty-cells: show;
     border: 1px solid #eaeaea;
     width: 100%;
-    max-width: 900px;
+    /*max-width: 900px*/;
     table-layout: fixed;
 }
 
@@ -661,6 +661,11 @@ textarea#content {
 
 #revision table td {
     background-color: transparent;
+
+}
+
+#revision table tbody {
+    font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
 }
 
 #revision table td img {
@@ -670,7 +675,7 @@ textarea#content {
 }
 
 #revision table tr:nth-child(2n-1) td {
-    background-color: #f2f2f2;
+    background-color: #fcfcfc;
 }
 
 #revision table tbody > tr:last-child > td {

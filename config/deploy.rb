@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
@@ -67,9 +68,8 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
-      queue! "sudo stop wiki || sudo start wiki"
-      queue! "sudo restart wiki"
-    end
+      queue! "sudo restart wiki || sudo start wiki"
+¡    end
   end
 end
 

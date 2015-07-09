@@ -18,7 +18,7 @@
                  { 'id' => 'editForm', 'method' => 'post', 'onsubmit' => 'cleanAuthorName()',
                    'accept-charset' => 'utf-8' }) do %>
        <div>
-        <textarea name="content" id="content" rows="24" cols="60"><%= h(flash[:content] ||
+        <textarea wrap="off" name="content" id="content" rows="24" cols="60"><%= h(flash[:content] ||
                          (params['content'] ?  params['content'] : @page.content).purify) %></textarea>
 <% if @page_name != 'HomePage' -%>
        <p>
