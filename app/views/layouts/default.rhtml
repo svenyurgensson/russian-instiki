@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   <script  src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/tomorrow.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6/styles/school_book.min.css"/>
 
   <%= stylesheet_link_tag 'instiki', :media => 'all'  unless @inline_style %>
   <%= stylesheet_link_tag 'syntax', :media => 'all'  unless @inline_style %>
@@ -92,7 +92,10 @@
 <script>
 <!--//--><![CDATA[//><!--
   window.onload = function() {
-     hljs.initHighlighting();
+    hljs.initHighlighting({
+       tabReplace: '    ',
+       useBR: true
+    });
 
      var editor = new Behave({
        textarea: document.querySelector('textarea'),
@@ -108,11 +111,15 @@
 
   document.addEventListener("keydown", function(e) {
     if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  &&
-         e.keyCode == 83) {
+         e.keyCode == 83) { // ctrl+s or cmd+s
          e.preventDefault();
          document.getElementById("submit").click();
          return false;
-      }
+    };
+    if (e.keyCode == 69) {
+      document.getElementById("edit").click();
+      return false;
+    }
    }, false);
 
  };

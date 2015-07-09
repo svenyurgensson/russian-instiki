@@ -242,7 +242,7 @@ function updateSize(elt, w, h) {
                   - $('editFormButtons').getHeight() - $('hidebutton').getHeight();
     var parentwidth = $('Content').getWidth();
     var f = $('MarkupHelp');
-    if (f.visible()) { parentwidth = parentwidth - f.getWidth() - 20 }
+  if (f.visible()) { parentwidth = parentwidth - f.getWidth() - 0; }
     var changename = $('alter_title');
     if (changename) {
       parentheight = parentheight - changename.parentNode.getHeight()-2*h;

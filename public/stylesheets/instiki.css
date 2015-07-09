@@ -19,11 +19,11 @@ text-align:center;
 
 #Content {
 border-top:none;
-margin:auto;
+margin-left: 340px;
 padding:0.3em;
 text-align:left;
 width:100%;
-max-width:55em;
+max-width:68em;
 }
 
 a:visited {
@@ -565,6 +565,14 @@ a {
     font-family: Consolas, "Liberation Mono", "Nimbus Mono L", "Andale Mono", "Courier New", monospace;
 }
 
+#revision h1,
+#revision h2,
+#revision h3,
+#revision h4,
+#revision h5 {
+    font-family: Digital, Arial, Helvetica, sans-serif;
+}
+
 html {
     min-height: 100%;
 }
@@ -673,11 +681,13 @@ textarea#content {
 #link_block {
     position: fixed;
     left:10px;
-    top: 60px;
-    width: 360px;
+    top: 70px;
+    width: 350px;
+    background-color: rgba(219, 255, 112, 0.7);
 }
 
 #link_block ul {
+    padding-left: 2px;
     columns: 150px 2;
     -webkit-columns: 150px 2;
     -moz-columns: 150px 2;
@@ -691,14 +701,17 @@ textarea#content {
     font-size: 0.9em;
     white-space: nowrap;
     overflow-x: hidden;
+    overflow-y: show;
     text-overflow: ellipsis;
     font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
 }
 
 
 #editFormButtons {
-    display: block;
+    background-color: rgba(219, 255, 112, 0.7);
     position: fixed;
     top: 2px;
     left: 10px;
+    padding: 5px;
+    width: 370px;
 }
