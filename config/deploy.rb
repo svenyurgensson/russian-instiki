@@ -67,7 +67,8 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
-      queue! "sudo restart wiki || sudo start wiki"
+      queue! "sudo stop wiki || sudo start wiki"
+      queue! "sudo restart wiki"
     end
   end
 end

@@ -690,7 +690,7 @@ textarea#content {
 #link_block li {
     font-size: 0.9em;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: hidden;
     text-overflow: ellipsis;
     font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
 }
