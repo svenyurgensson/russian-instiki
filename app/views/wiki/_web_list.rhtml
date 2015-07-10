@@ -2,7 +2,7 @@
   <strong>нажмите чтобы вставить ссылку:</strong>
   <ul>
     <% @possible_links.each do |link| %>
-    <li><a href="#" onclick="insertAtCaret('content','[[<%=link%>|<%=link%>]]');return false;"><%=link%></a></li>
+    <li><a href="#" title="<%=link%>" onclick="insertAtCaret('content','[[<%=link%>|<%=link%>]]');return false;"><%=link%></a></li>
     <%end%>
   </ul>
 </div>

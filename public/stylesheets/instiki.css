@@ -660,7 +660,7 @@ textarea#content {
 }
 
 #revision table td {
-    background-color: transparent;
+    background-color: rgb(249, 249, 249);
 
 }
 
@@ -703,12 +703,18 @@ textarea#content {
 }
 
 #link_block li {
-    font-size: 0.9em;
+    font-size: 0.94em;
     white-space: nowrap;
-    overflow-x: hidden;
-    overflow-y: show;
     text-overflow: ellipsis;
     font-family: Monaco,"Lucia Console","DejaVu Sans Mono","Courier 10 Pitch","Nimbus Mono L","Courier New",Courier,monospace;
+}
+
+#link_block li a {
+    text-decoration: none;
+    border-bottom: 1px red dashed;
+}
+#link_block li a:hover {
+    border-bottom: none;
 }
 
 

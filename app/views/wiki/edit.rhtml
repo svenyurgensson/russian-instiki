@@ -35,7 +35,6 @@
             <%= text_field_tag :author, h(@author.purify),
                     :onfocus => "this.value == 'Аноним' ? this.value = '' : true;",
                     :onblur  => "this.value == '' ? this.value = 'Аноним' : true" %>
-            |
             <span>
                 <%= link_to('Отмена', {:web => @web.address, :action => 'cancel_edit', :id => @page.name},
                       {:accesskey => 'c'}) %>

@@ -472,7 +472,13 @@ EOL
   private
 
   def possible_links
+    list()
     @possible_links = Page.all(select: "name").collect(&:name).sort.take(500)
+
+    @possible_links |= @pages_in_category.wanted_pages
+    @possible_links |= @pages_in_category.orphaned_pages.map(&:name)
+
+    @possible_links.sort!
   end
 
 
