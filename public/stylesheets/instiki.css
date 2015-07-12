@@ -726,3 +726,25 @@ textarea#content {
     padding: 5px;
     width: 370px;
 }
+
+a[href^="http://"]:hover,
+a[href^="https://"]:hover{
+    background-color: red;
+}
+
+a[href^="http://"]:after,
+a[href^="https://"]:after{
+  content: "\f08e";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: none;
+  padding-left: 8px;
+}
+/* Strip from links to own domain or with class no_icon */
+a[href^="http://wiki.alibaba24.ru"]:after,
+a.no_icon:after {
+  content:"" !important;
+  padding-left: 0;
+}
