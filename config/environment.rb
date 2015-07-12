@@ -27,7 +27,8 @@ Rails::Initializer.run do |config|
   end
   config.action_controller.session = {
     :key => "instiki_session",
-    :secret => secret
+    :secret => secret,
+    :imgurKey => YAML.load_file(File.join(__dir__, "imgur.yml"))["client_id"]
    }
 
   # Don't do file system STAT calls to check to see if the templates have changed.

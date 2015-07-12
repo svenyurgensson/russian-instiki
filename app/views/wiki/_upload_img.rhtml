@@ -10,6 +10,9 @@
   <input type='text' id="result-link" value="" onclick="this.select();" />
 </div>
 
+
+<% if Rails.configuration.action_controller.session[:imgurKey] %>
+
 <script type="text/javascript">
   window.ondragover = function(e) {e.preventDefault()}
   window.ondrop = function(e) {e.preventDefault(); FileUpload(e.dataTransfer.files[0]); }
@@ -35,7 +38,7 @@
             document.body.className = "uploaded";
         }
 
-        xhr.setRequestHeader('Authorization', 'Client-ID 30e01eaf2d41c5c'); // Get your own key http://api.imgur.com/
+        xhr.setRequestHeader('Authorization', 'Client-ID <%= Rails.configuration.action_controller.session[:imgurKey]%>'); // Get your own key http://api.imgur.com/
 
         // Ok, I don't handle the errors. An exercise for the reader.
         /* And now, we send the formdata */
@@ -43,3 +46,4 @@
     }
 
 </script>
+<% end %>

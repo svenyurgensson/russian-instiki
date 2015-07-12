@@ -18,7 +18,7 @@ Instiki on BeOS, Amiga OS, OS2, Zeta OS and support for various exotic Platforms
   Step 1. Get Instiki and run "ruby bundle install --path vendor/bundle"
   Step 2. Run "instiki"
   Step 3. Chuckle... "There's no step three!" (TM)
- 
+
 
 == Details
 
@@ -51,7 +51,7 @@ Tiger ships with a really old Ruby Version (1.8.2) and a broken Readline Library
 - Depending on the version of Rubygems that came with your Ruby, you may need to
 
     sudo gem update --system
-    
+
 - get SQLite or compile from http://sqlite.org (you can also use mysql or any other supported database system if you want)
 - run "ruby bundle install --path vendor/bundle"
 - run instiki
@@ -71,12 +71,12 @@ You're now running a perfectly suitable wiki on port 2500 that'll present you wi
 * Reference tracker: Which other pages are pointing to the current?
 * Five markup choices:
    Markdown-based choices [http://daringfireball.net/projects/markdown/syntax]:
-     Markdown+itex2MML (the default; requires itex2MML) 
+     Markdown+itex2MML (the default; requires itex2MML)
      Markdown+BlahTeX/PNG (requires blahtex and a working TeX installation)
      Markdown
    Textile [http://www.textism.com/tools/textile]
    RDoc [http://rdoc.sourceforge.net/doc]
-* Support for Math (using itex syntax [http://golem.ph.utexas.edu/~distler/blog/itex2MMLcommands.html]) 
+* Support for Math (using itex syntax [http://golem.ph.utexas.edu/~distler/blog/itex2MMLcommands.html])
 * Support for WYSIWYG SVG editing -- embed SVG graphics right in your wiki page.
 * Embedded webserver: uses Mongrel (if installed), or the bundled WEBrick webserver (if not).
 * Internationalization: Wiki words in any latin, greek, cyrillian, or armenian characters
@@ -97,7 +97,7 @@ You're now running a perfectly suitable wiki on port 2500 that'll present you wi
 
    ruby bundle install --path vendor/bundle
    ruby bundle exec rake upgrade_instiki
-   
+
 == Download the latest release from:
 
 * http://rubyforge.org/project/showfiles.php?group_id=186
@@ -132,3 +132,8 @@ From 0.13 onwards:: Matthias Tarasiewicz and Jacques Distler
 Email:: instiki-devel[AT]rubyforge.org
 Weblog Jacques: http://golem.ph.utexas.edu/~distler/blog/
 Weblog Parasew: http://parasew.com
+
+
+Russified, fixed, added more abilities by Yury Batenko
+Email: jurbat@gmail.com
+github: https://github.com/svenyurgensson
