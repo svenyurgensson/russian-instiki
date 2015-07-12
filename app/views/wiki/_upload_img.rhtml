@@ -8,10 +8,11 @@
   <img id="preview"></img>
   <input type="file" id="loader" onchange="FileUpload(this.files[0])"/>
   <input type='text' id="result-link" value="" onclick="this.select();" />
+  <button id="insertImg">Вставить!</button>
 </div>
 
 
-<% if Rails.configuration.action_controller.session[:imgurKey] %>
+<% if ENV['ImgurKey'] %>
 
 <script type="text/javascript">
   window.ondragover = function(e) {e.preventDefault()}
@@ -28,17 +29,19 @@
         var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
         xhr.open("POST", "https://api.imgur.com/3/image.json"); // Boooom!
         xhr.onload = function() {
-            // Big win!
-            var json = JSON.parse(xhr.responseText);
-            console.log(json);
-            document.querySelector("#preview").src = json.data.link;
-            var wiki_img = "![описание картинки](" + json.data.link + ")";
-            document.querySelector("#result-link").value  = wiki_img;
+          var json = JSON.parse(xhr.responseText);
+          console.log(json);
+          document.querySelector("#preview").src = json.data.link;
+          var wiki_img = "![описание картинки](" + json.data.link + ")";
+          document.querySelector("#result-link").value  = wiki_img;
+          document.body.className = "uploaded";
+          document.querySelector("#insertImg").onclick = function(){
             insertAtCaret('content', wiki_img);
-            document.body.className = "uploaded";
+            return false;
+          };
         }
 
-        xhr.setRequestHeader('Authorization', 'Client-ID <%= Rails.configuration.action_controller.session[:imgurKey]%>'); // Get your own key http://api.imgur.com/
+        xhr.setRequestHeader('Authorization', 'Client-ID <%= ENV["ImgurKey"] %>'); // Get your own key http://api.imgur.com/
 
         // Ok, I don't handle the errors. An exercise for the reader.
         /* And now, we send the formdata */

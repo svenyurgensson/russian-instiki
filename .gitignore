@@ -3,5 +3,4 @@ tmp/
 cache/
 log/
 config/deploy.rb
-config/imgur.yml
-README.md
+dev

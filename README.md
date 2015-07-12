@@ -41,7 +41,11 @@ Show usage examples
 
 ## FAQs
 
+Для использования сервиса imgur.com следует получить ключ своего приложения на http://api.imgur.com/
+и запускать `instiki` с установленной переменной окружения ImgurKey
 
+    export ImgurKey=your-key
+    instiki
 
 ## Contributors
 
